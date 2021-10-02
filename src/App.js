@@ -80,6 +80,9 @@ function App() {
     },
   ];
 
+  //TODO: add Wrap component
+  // Add Modal to create new task
+
   return (
     <ChakraProvider>
       <div className="App">
