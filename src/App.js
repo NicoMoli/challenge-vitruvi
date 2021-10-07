@@ -98,6 +98,13 @@ function App() {
     setTasks(tasksNews);
   };
 
+  const handleRemove = (id) => {
+    const newTasks = [...tasks];
+    var index = newTasks.findIndex((c) => c.id === id);
+    if (index !== -1) newTasks.splice(index, 1);
+    setTasks(newTasks);
+  };
+
   return (
     <ChakraProvider>
       <div className="App">
@@ -111,18 +118,21 @@ function App() {
           <CardTask
             tasks={tasks}
             saveTask={handleNewTask}
+            removeTask={handleRemove}
             cardStatus={1}
             columnTitle={"Planned"}
           />
           <CardTask
             tasks={tasks}
             saveTask={handleNewTask}
+            removeTask={handleRemove}
             cardStatus={2}
             columnTitle={"In Progress"}
           />
           <CardTask
             tasks={tasks}
             saveTask={handleNewTask}
+            removeTask={handleRemove}
             cardStatus={3}
             columnTitle={"Completed"}
           />
