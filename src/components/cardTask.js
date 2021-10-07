@@ -9,9 +9,8 @@ import {
 import { useRef } from "react";
 import { CreateTaskModal } from "./createTaskModal";
 
-export const CardTask = ({ tasks, columnTitle, cardStatus }) => {
+export const CardTask = ({ tasks, columnTitle, cardStatus, saveTask }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   const initialRef = useRef();
   const finalRef = useRef();
 
@@ -68,6 +67,7 @@ export const CardTask = ({ tasks, columnTitle, cardStatus }) => {
                 initialRef={initialRef}
                 finalRef={finalRef}
                 isOpen={isOpen}
+                saveTask={saveTask}
                 onCloseModal={handleClose}
               />
               <Button colorScheme="red" variant="outline" m={2} size="xs">

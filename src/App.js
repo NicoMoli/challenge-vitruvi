@@ -2,9 +2,10 @@ import "./App.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Box, SimpleGrid, Heading } from "@chakra-ui/react";
 import { CardTask } from "./components/cardTask";
+import { useState } from "react";
 
 function App() {
-  const tasks = [
+  const tasksMock = [
     {
       id: 1,
       name: "Task Planned 1",
@@ -81,7 +82,21 @@ function App() {
   ];
 
   //TODO: add Wrap component
-  // Add Modal to create new task
+  const [tasks, setTasks] = useState(tasksMock);
+
+  const handleNewTask = (value) => {
+    const newTask = {
+      id: Math.floor(Math.random() * 100),
+      name: value.name,
+      description: value.description,
+      estimated: value.estimate,
+      status: "Planned",
+      statusId: 1,
+    };
+    const tasksNews = [...tasks];
+    tasksNews.push(newTask);
+    setTasks(tasksNews);
+  };
 
   return (
     <ChakraProvider>
@@ -93,9 +108,24 @@ function App() {
         </Box>
 
         <SimpleGrid columns={[2, null, 3]} spacing="40px">
-          <CardTask tasks={tasks} cardStatus={1} columnTitle={"Planned"} />
-          <CardTask tasks={tasks} cardStatus={2} columnTitle={"In Progress"} />
-          <CardTask tasks={tasks} cardStatus={3} columnTitle={"Completed"} />
+          <CardTask
+            tasks={tasks}
+            saveTask={handleNewTask}
+            cardStatus={1}
+            columnTitle={"Planned"}
+          />
+          <CardTask
+            tasks={tasks}
+            saveTask={handleNewTask}
+            cardStatus={2}
+            columnTitle={"In Progress"}
+          />
+          <CardTask
+            tasks={tasks}
+            saveTask={handleNewTask}
+            cardStatus={3}
+            columnTitle={"Completed"}
+          />
         </SimpleGrid>
       </div>
     </ChakraProvider>

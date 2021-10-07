@@ -11,7 +11,6 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
-  Box,
 } from "@chakra-ui/react";
 import { Formik, Form, Field } from "formik";
 
@@ -20,6 +19,7 @@ export const CreateTaskModal = ({
   finalRef,
   isOpen,
   onCloseModal,
+  saveTask,
 }) => {
   const validateName = (value) => {
     let error;
@@ -50,11 +50,12 @@ export const CreateTaskModal = ({
           <ModalCloseButton />
           <ModalBody pb={6}>
             <Formik
-              initialValues={{ name: "", description: "" }}
+              initialValues={{ name: "", description: "", estimate: 0 }}
               onSubmit={(values, actions) => {
                 setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
                   actions.setSubmitting(false);
+                  saveTask(values);
+                  onCloseModal();
                 }, 1000);
               }}
             >
@@ -62,17 +63,13 @@ export const CreateTaskModal = ({
                 <Form>
                   <Field name="name" validate={validateName}>
                     {({ field, form }) => (
-                      <Box>
-                        <FormControl
-                          isInvalid={form.errors.name && form.touched.name}
-                        >
-                          <FormLabel htmlFor="name">Name</FormLabel>
-                          <Input {...field} id="name" placeholder="name" />
-                          <FormErrorMessage>
-                            {form.errors.name}
-                          </FormErrorMessage>
-                        </FormControl>
-                      </Box>
+                      <FormControl
+                        isInvalid={form.errors.name && form.touched.name}
+                      >
+                        <FormLabel htmlFor="name">Name</FormLabel>
+                        <Input {...field} id="name" placeholder="name" />
+                        <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                      </FormControl>
                     )}
                   </Field>
                   <Field name="description" validate={validateDescription}>
