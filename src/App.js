@@ -1,8 +1,8 @@
-import "./App.css";
-import { ChakraProvider } from "@chakra-ui/react";
-import { Box, SimpleGrid, Heading } from "@chakra-ui/react";
-import { CardTask } from "./components/cardTask";
-import { useState } from "react";
+import "./App.css"
+import { ChakraProvider, Box, SimpleGrid, Heading } from "@chakra-ui/react"
+
+import { CardTask } from "./components/cardTask"
+import { useState } from "react"
 
 function App() {
   const tasksMock = [
@@ -79,10 +79,25 @@ function App() {
       status: "Completed",
       statusId: 3,
     },
-  ];
+  ]
 
-  //TODO: add Wrap component
-  const [tasks, setTasks] = useState(tasksMock);
+  // TODO: add Wrap component
+  const [tasks, setTasks] = useState(tasksMock)
+
+  const status = [
+    {
+      id: 1,
+      statusName: "Planned",
+    },
+    {
+      id: 2,
+      statusName: "In Progress",
+    },
+    {
+      id: 3,
+      statusName: "Completed",
+    },
+  ]
 
   const handleNewTask = (value) => {
     const newTask = {
@@ -92,18 +107,35 @@ function App() {
       estimated: value.estimate,
       status: "Planned",
       statusId: 1,
-    };
-    const tasksNews = [...tasks];
-    tasksNews.push(newTask);
-    setTasks(tasksNews);
-  };
+    }
+
+    const tasksNews = [...tasks]
+    tasksNews.push(newTask)
+    setTasks(tasksNews)
+  }
 
   const handleRemove = (id) => {
-    const newTasks = [...tasks];
-    var index = newTasks.findIndex((c) => c.id === id);
-    if (index !== -1) newTasks.splice(index, 1);
-    setTasks(newTasks);
-  };
+    const newTasks = [...tasks]
+    const index = newTasks.findIndex((c) => c.id === id)
+    if (index !== -1) newTasks.splice(index, 1)
+    setTasks(newTasks)
+  }
+
+  const changeState = (id, statusId) => {
+    const newTasks = [...tasks]
+
+    const tasksWithStateChanged = newTasks.map((item) =>
+      item.id === id
+        ? {
+            ...item,
+            status: status.find((c) => c.id === statusId).statusName,
+            statusId: statusId,
+          }
+        : item
+    )
+
+    setTasks(tasksWithStateChanged)
+  }
 
   return (
     <ChakraProvider>
@@ -119,6 +151,7 @@ function App() {
             tasks={tasks}
             saveTask={handleNewTask}
             removeTask={handleRemove}
+            changeState={changeState}
             cardStatus={1}
             columnTitle={"Planned"}
           />
@@ -126,6 +159,7 @@ function App() {
             tasks={tasks}
             saveTask={handleNewTask}
             removeTask={handleRemove}
+            changeState={changeState}
             cardStatus={2}
             columnTitle={"In Progress"}
           />
@@ -133,13 +167,14 @@ function App() {
             tasks={tasks}
             saveTask={handleNewTask}
             removeTask={handleRemove}
+            changeState={changeState}
             cardStatus={3}
             columnTitle={"Completed"}
           />
         </SimpleGrid>
       </div>
     </ChakraProvider>
-  );
+  )
 }
 
-export default App;
+export default App

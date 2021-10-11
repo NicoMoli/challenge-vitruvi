@@ -5,9 +5,9 @@ import {
   Select,
   Center,
   useDisclosure,
-} from "@chakra-ui/react";
-import { useRef } from "react";
-import { CreateTaskModal } from "./createTaskModal";
+} from "@chakra-ui/react"
+import { useRef } from "react"
+import { CreateTaskModal } from "./createTaskModal"
 
 export const CardTask = ({
   tasks,
@@ -15,12 +15,17 @@ export const CardTask = ({
   cardStatus,
   saveTask,
   removeTask,
+  changeState,
 }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const initialRef = useRef();
-  const finalRef = useRef();
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const initialRef = useRef()
+  const finalRef = useRef()
 
-  const handleClose = () => onClose();
+  const handleChangeState = (e, id) => {
+    changeState(id, Number(e.target.value))
+  }
+
+  const handleClose = () => onClose()
 
   return (
     <Box>
@@ -93,23 +98,15 @@ export const CardTask = ({
                   width={40}
                   variant="filled"
                   placeholder="Change state"
+                  onChange={(e) => handleChangeState(e, item.id)}
                 >
-                  <option
-                    disabled={cardStatus === 1 ? true : false}
-                    value="option1"
-                  >
+                  <option disabled={cardStatus === 1} value="1">
                     Planned
                   </option>
-                  <option
-                    disabled={cardStatus === 2 ? true : false}
-                    value="option2"
-                  >
+                  <option disabled={cardStatus === 2} value="2">
                     In Progress
                   </option>
-                  <option
-                    disabled={cardStatus === 3 ? true : false}
-                    value="option3"
-                  >
+                  <option disabled={cardStatus === 3} value="3">
                     Completed
                   </option>
                 </Select>
@@ -118,5 +115,5 @@ export const CardTask = ({
           ))}
       </SimpleGrid>
     </Box>
-  );
-};
+  )
+}
