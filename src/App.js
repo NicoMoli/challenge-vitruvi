@@ -77,11 +77,7 @@ function App() {
       <div className="App">
         {!error ? (
           <Box>
-            <Heading className="App-header">Challenge Vitruvi</Heading>
-
-            <Box bg="grey" w="100%" p={4} color="white">
-              TASKS
-            </Box>
+            <Heading className="App-header">TASK BOARD</Heading>
 
             <SimpleGrid columns={[2, null, 3]} spacing="40px">
               <CardTask

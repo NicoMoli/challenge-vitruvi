@@ -1,7 +1,7 @@
 import {
   Box,
   Button,
-  SimpleGrid,
+  Stack,
   Select,
   Center,
   useDisclosure,
@@ -29,8 +29,8 @@ export const CardTask = ({
 
   return (
     <Box>
-      <SimpleGrid columns={[1, null, 1]} spacing="40px">
-        <Box bg="tomato" w="100%" p={4} color="white">
+      <Stack direction={"column"}>
+        <Box bg="tomato" p={4} color="white">
           {columnTitle}
         </Box>
 
@@ -39,7 +39,6 @@ export const CardTask = ({
           .map((item) => (
             <Box
               key={item.id}
-              maxW="sm"
               borderWidth="1px"
               borderRadius="lg"
               overflow="hidden"
@@ -113,7 +112,7 @@ export const CardTask = ({
               </Center>
             </Box>
           ))}
-      </SimpleGrid>
+      </Stack>
     </Box>
   )
 }
