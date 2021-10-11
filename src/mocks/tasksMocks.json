@@ -1,0 +1,75 @@
+[
+  {
+    "id": 1,
+    "name": "Task Planned 1",
+    "description": "Task to do with devs",
+    "estimated": "2",
+    "status": "planned",
+    "statusId": 1
+  },
+  {
+    "id": 2,
+    "name": "Task Planned 2",
+    "description": "Task to do with devs",
+    "estimated": "4",
+    "status": "planned",
+    "statusId": 1
+  },
+  {
+    "id": 3,
+    "name": "Task Planned 3",
+    "description": "Task to do with devs",
+    "estimated": "5",
+    "status": "planned",
+    "statusId": 1
+  },
+  {
+    "id": 4,
+    "name": "Task In Progress 1",
+    "description": "Task to do with devs",
+    "estimated": "2",
+    "status": "In Progress",
+
+    "statusId": 2
+  },
+  {
+    "id": 5,
+    "name": "Task In Progress 2",
+    "description": "Task to do with devs",
+    "estimated": "8",
+    "status": "In Progress",
+    "statusId": 2
+  },
+  {
+    "id": 6,
+    "name": "Task In Progress 3",
+    "description": "Task to do with devs",
+    "estimated": "9",
+    "status": "In Progress",
+    "statusId": 2
+  },
+  {
+    "id": 7,
+    "name": "Task Completed 1",
+    "description": "Task to do with devs",
+    "estimated": "9",
+    "status": "Completed",
+    "statusId": 3
+  },
+  {
+    "id": 8,
+    "name": "Task Completed 2",
+    "description": "Task to do with devs",
+    "estimated": "4",
+    "status": "Completed",
+    "statusId": 3
+  },
+  {
+    "id": 9,
+    "name": "Task Completed 3",
+    "description": "Task to do with devs",
+    "estimated": "5",
+    "status": "Completed",
+    "statusId": 3
+  }
+]

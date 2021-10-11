@@ -35,7 +35,7 @@ export const CardTask = ({
         </Box>
 
         {tasks
-          .filter((c) => c.statusId === cardStatus)
+          ?.filter((c) => c.statusId === cardStatus)
           .map((item) => (
             <Box
               key={item.id}
