@@ -24,7 +24,7 @@ function App() {
     },
   ]
 
-  const getTasks = useCallback(async () => {
+  const getData = useCallback(async () => {
     try {
       const tasksReceived = await getTasks()
       setTasks(tasksReceived)
@@ -35,7 +35,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    getTasks()
+    getData()
   }, [])
 
   const handleNewTask = (value) => {
