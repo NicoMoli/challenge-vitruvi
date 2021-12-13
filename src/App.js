@@ -2,7 +2,7 @@ import "./App.css"
 import { ChakraProvider, Box, SimpleGrid, Heading } from "@chakra-ui/react"
 
 import { CardTask } from "./components/cardTask"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import getTasks from "./api/getTasks"
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
     },
   ]
 
-  useEffect(async () => {
+  const getTasks = useCallback(async () => {
     try {
       const tasksReceived = await getTasks()
       setTasks(tasksReceived)
@@ -32,6 +32,10 @@ function App() {
       console.log("Error ", error)
       setError(error)
     }
+  }, [])
+
+  useEffect(() => {
+    getTasks()
   }, [])
 
   const handleNewTask = (value) => {
